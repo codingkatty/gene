@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     createModal('Welcome!', 'Click items to interact');
 
-    let divList = ['one', 'two'];
+    let divList = ['one', 'two', 'three'];
     let currentDiv = 1;
     let milkGoat = [false, false];
+    let plantWheat = [false, false, false, false];
     
     for(let i = 2; i <= divList.length; i++) {
         document.getElementById(`${divList[i - 1]}`).style.display = 'none';
@@ -23,9 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('note').addEventListener('click', async () => {
         if (currentDiv == 1) {
-            await createModal('Note', 'Biotechnology is the use of biological systems, organisms, or derivatives to develop products or processes for a specific use.', 'Okay');
+            await createModal('Note', 'Biotechnology is the use of biological systems, organisms, or derivatives to develop products or processes for a specific use.');
         } else if (currentDiv == 2) {
             await createModal('Note', 'Genetically modified organisms (GMOs) are organisms that contain recombinant DNA. Organisms that contain recombinant DNA are known as transgenic organisms.');
+        } else if (currentDiv == 3) {
+            await createModal('Note', 'Recombinant DNA technology has successfully produced many crops (rice, oil palm, pineapple, corn and soybeans) as well as livestock (salmon, cattle and goats) that have the desired characteristics, such as resistance to herbicide, resistance to disease, application in medicine, tolerance to heavy metals and resistance to pest.');
         }
     });
 
@@ -62,9 +65,40 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             document.getElementById('two').style.cursor = "url('images/milk_bucket.png'), auto";
             milkGoat[1] = true;
+        }        
+    });
+
+    document.getElementById('farmer').addEventListener('click', async () => {
+        if (plantWheat[0] && plantWheat[1] && plantWheat[2]) {
+            await createModal('Farmer', 'Thank you so much! I can\'t believe you actually did it. I feel so much better now. I can\'t thank you enough.', 'You\'re welcome');
+            await createModal('Farmer', 'Golden Rice is a special type of rice modified with genes from a daffodil and a bacterium. These genes make it produce beta-carotene in the grain, which our bodies turn into vitamin A. This helps prevent blindness and boosts immunity, especially for kids in places where vitamin A deficiency is common.')
+            document.getElementById('three').style.cursor = "default";
+            plantWheat = [false, false, false, false];
+        } else if (plantWheat[0] && plantWheat[1] && !plantWheat[2]) {
+            await createModal('Farmer', 'I see that it has fully grown. Would ya mind help me harvest it?', 'Sure');
+            document.getElementById('three').style.cursor = "url('images/stone_hoe.png'), auto";
+            plantWheat[2] = true;
+        } else {
+            await createModal('Farmer', 'Ouch!! Would ya\' mind lending a hand? My feet hurts, it would be nice if you could help me plant this wheat!', 'Why does it look different?');
+            await createModal('Farmer', 'It\'s the wheat—it has a special gene, it has more vitamin A. This is called Golden Rice. It can help prevent vitamin A deficiency, which can cause blindness and other health problems. By modifying the wheat’s genome, we can help people get the nutrients they need to stay healthy.', 'I\'ll help you');
+            document.getElementById('three').style.cursor = "url('images/seed_mc.png'), auto";
+            plantWheat[0] = true;
         }
-        
-        
+    });
+
+    document.getElementById('soil').addEventListener('click', async () => {
+        if (!plantWheat[0]) {
+            await createModal('Soil', 'This is the soil that the wheat will be planted in. You need to plant the seeds here.', 'Okay');
+            return;
+        } else if (plantWheat[0] && !plantWheat[1]) {
+            document.getElementById('three').style.cursor = "default";
+            document.getElementById('soil').src = 'images/soil_grow.gif';
+            plantWheat[1] = true;
+        } else if (plantWheat[0] && plantWheat[1] && plantWheat[2] && !plantWheat[3]) {
+            document.getElementById('three').style.cursor = "url('images/wheat_mc.png'), auto";
+            document.getElementById('soil').src = 'images/soil.png';
+            plantWheat[2] = true;
+        }
     });
 });
 

@@ -142,6 +142,29 @@ button {
     left: 20px;
 }
 
+#three {
+    background-color: #b9b68c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-top: 10%;
+}
+
+#soil {
+    width: 400px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+
+#farmer {
+    height: 300px;
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+}
+
 @keyframes moveLeftRight {
     0% {
         left: 0;
