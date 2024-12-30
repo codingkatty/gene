@@ -1,0 +1,60 @@
+how the game goes
+
+lv1 notes
+interactable
+hover: glow
+cutscenes
+
+click show
+- what is dna
+- genetic engineering
+- tools
+
+lv2 crispr
+game
+
+- set of insructions
+- customizable
+- edit gene sequence
+
+lv3 clone
+game
+
+-intro sheep
+- somatic
+
+- put edited into embryo
+
+lv4
+notes
+
+- gmo & gmf
+- survive
+- lil fighting game
+
+- importance / risks
+
+lv 5 (other)
+- insulin
+
+(brief explanation)
+
+- creating insulin
+
+last
+
+origanism generates
+
+- number of eye
+- color
+- has horns/ears
+- ear shape
+- wool/hair
+- pupil color
+
+very cute 
+
+- aseprite
+- animations
+- mainly hard
+- figma

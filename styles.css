@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Sour Gummy', cursive;
+    font-weight: 600;
+    background-color: #f3e0cc;
+    color: #281412;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+button {
+    font-family: 'Sour Gummy', cursive;
+    font-weight: 600;
+    font-size: 28px;
+    color: #281412;
+    background-color: #f3e0cc00;
+    border: 6px solid #281412;
+    border-radius: 16px;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#start {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#start h1 {
+    font-size: 3.2rem;
+    margin-bottom: 20px;
+}
+
+#start button:hover {
+    transform: rotate(5deg);
+}
+
+#controls {
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#controls img {
+    height: 80px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #f3e0cc;
+    padding: 30px;
+    border-radius: 16px;
+    border: 6px solid #281412;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    animation: modalPop 0.3s ease-out;
+}
+
+.modal-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #281412;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #281412;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#one {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3e0cc;
+    cursor: default;
+}
+
+#gene {
+    width: 300px;
+}
+
+#two {
+    background-color: #a3d741;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-top: 10%;
+    transition: padding-top 0.3s ease;
+    cursor: default;
+}
+
+#goat {
+    width: 400px;
+    position: relative;
+    animation: moveLeftRight 6s ease-in-out infinite;
+    display: block;
+    margin: 0 auto;
+}
+
+#npc {
+    transform: scaleX(-1);
+    width: 200px;
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+}
+
+@keyframes moveLeftRight {
+    0% {
+        left: 0;
+        transform: scaleX(-1);
+    }
+    48.9% {
+        left: 100;
+        transform: scaleX(-1);
+    }
+    49% {
+        left: 100;
+        transform: scaleX(1);
+    }
+    50% {
+        left: 100px;
+        transform: scaleX(1);
+    }
+    100% {
+        left: 0;
+    }
+}
