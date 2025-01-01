@@ -1,10 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
     createModal('Welcome!', 'Click items to interact');
 
-    let divList = ['one', 'two', 'three'];
+    let divList = ['one', 'two', 'three', 'four', 'five'];
     let currentDiv = 1;
     let milkGoat = [false, false];
     let plantWheat = [false, false, false, false];
+    let geneProcess = 0;
+
+    const geneImage = document.getElementById('insulin');
+    const guide = [
+        {
+            image: 'images/gene.png',
+            text: 'A spliced human DNA with insulin gene',
+            guide: 'Cut the gene with restriction enzymes'
+        },
+        {
+            image: 'images/insulin.png',
+            text: 'Insulin gene',
+            guide: 'You\'ve cut a gene, now we\'ll need to cut a plasmid'
+        },
+        {
+            image: 'images/plasmid.png',
+            text: 'Plasmid',
+            guide: 'A plasmid is a circular DNA found in bacteria which is used as a cloning vector'
+        },
+        {
+            image: 'images/cut_plasmid.png',
+            text: 'Cut plasmid',
+            guide: 'You\'ve cut a plasmid with restriction enzymes, now we\'ll need to insert the gene'
+        },
+        {
+            image: 'images/recombinant_plasmid.png',
+            text: 'A recombinant plasmid',
+            guide: 'Human insulin gene has been inserted into the plasmid'
+        },
+        {
+            image: 'images/bacterium.png',
+            text: 'A trnasgenic bacterium',
+            guide: 'The recombinant plasmid is introduced into a bacterium'
+        },
+        {
+            image: 'images/insulin.gif',
+            text: 'Insulin procuded!',
+            guide: 'Bacterial clone multiplies and produces insulin'
+        }
+    ];
     
     for(let i = 2; i <= divList.length; i++) {
         document.getElementById(`${divList[i - 1]}`).style.display = 'none';
@@ -24,11 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('note').addEventListener('click', async () => {
         if (currentDiv == 1) {
-            await createModal('Note', 'Biotechnology is the use of biological systems, organisms, or derivatives to develop products or processes for a specific use.');
+            await createModal('Note', 'Genetic engineering is a gene manipulation technique to genetically modify an organism to form new gene combinations.');
         } else if (currentDiv == 2) {
             await createModal('Note', 'Genetically modified organisms (GMOs) are organisms that contain recombinant DNA. Organisms that contain recombinant DNA are known as transgenic organisms.');
         } else if (currentDiv == 3) {
             await createModal('Note', 'Recombinant DNA technology has successfully produced many crops (rice, oil palm, pineapple, corn and soybeans) as well as livestock (salmon, cattle and goats) that have the desired characteristics, such as resistance to herbicide, resistance to disease, application in medicine, tolerance to heavy metals and resistance to pest.');
+        } else if (currentDiv == 4) {
+            await createModal('Note', 'Examples of GMF are Golden Rice, Super Salmon and Bt Corn');
+        } else if (currentDiv == 5) {
+            await createModal('Note', 'In the past, insulin was extracted from the pancreas of cattle or pigs to treat patients with diabetes mellitus.');
         }
     });
 
@@ -99,6 +143,24 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('soil').src = 'images/soil.png';
             plantWheat[2] = true;
         }
+    });
+
+    document.getElementById('guide').addEventListener('click', async () => {
+        if (window.getComputedStyle(geneImage).display === 'none') {
+            geneImage.style.display = 'block';
+            document.getElementById('guide-text').textContent = guide[geneProcess].text;
+        } else {
+            await createModal('Guide', guide[geneProcess].guide);
+        }
+    });
+
+    document.getElementById('insulin').addEventListener('click', () => {
+        geneProcess++;
+        if (geneProcess >= guide.length) {
+            geneProcess = 0;
+        }
+        geneImage.src = guide[geneProcess].image;
+        document.getElementById('guide-text').textContent = guide[geneProcess].text;
     });
 });
 

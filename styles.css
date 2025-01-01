@@ -186,3 +186,92 @@ button {
         left: 0;
     }
 }
+
+#four {
+    background-color: #f3e0cc;
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#four .main-title {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    color: #281412;
+    text-align: center;
+}
+
+.gmf-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1400px;
+}
+
+#gmf-d {
+    width: 450px;
+}
+
+.info {
+    background: #f3e0cc;
+    padding: 30px;
+    border-radius: 16px;
+    border: 6px solid #281412;
+    width: 600px;
+    animation: modalPop 0.3s ease-out;
+}
+
+.info h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #281412;
+    text-align: center;
+}
+
+.info ul {
+    list-style: none;
+}
+
+.info ul li {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #281412;
+    padding-left: 20px;
+    position: relative;
+}
+
+.info ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #281412;
+}
+
+#five {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+#guide {
+    width: 200px;
+    cursor: url('images/questionmark.png'), auto;
+}
+
+#insulin {
+    height: 300px;
+    display: none;
+    cursor: url('images/laser.png'), auto;
+}
