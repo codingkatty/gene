@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     createModal('Welcome!', 'Click items to interact');
 
-    let divList = ['one', 'two', 'three', 'four', 'five'];
+    let divList = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
     let currentDiv = 1;
     let milkGoat = [false, false];
     let plantWheat = [false, false, false, false];
     let geneProcess = 0;
+    let evidence = [false, false];
+    let oilCleanup = [false, false];
+    let oilsRemaining = 2;
 
     const geneImage = document.getElementById('insulin');
     const guide = [
@@ -45,19 +48,23 @@ document.addEventListener('DOMContentLoaded', () => {
             guide: 'Bacterial clone multiplies and produces insulin'
         }
     ];
-    
-    for(let i = 2; i <= divList.length; i++) {
+
+    for (let i = 2; i <= divList.length; i++) {
         document.getElementById(`${divList[i - 1]}`).style.display = 'none';
     }
-    
+
     document.getElementById('next').addEventListener('click', () => {
         document.getElementById(`${divList[currentDiv - 1]}`).style.display = 'none';
         currentDiv = currentDiv >= divList.length ? 1 : currentDiv + 1;
         document.getElementById(`${divList[currentDiv - 1]}`).style.display = 'flex';
 
-        if(currentDiv === 2) {
+        if (currentDiv === 2) {
             setInterval(() => {
                 document.getElementById('two').style.paddingTop = `${Math.floor(Math.random() * 300)}px`;
+            }, 2000);
+        } else if (currentDiv === 8) {
+            setInterval(() => {
+                document.getElementById('eight').style.paddingTop = `${Math.floor(Math.random() * 300)}px`;
             }, 2000);
         }
     });
@@ -73,6 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
             await createModal('Note', 'Examples of GMF are Golden Rice, Super Salmon and Bt Corn');
         } else if (currentDiv == 5) {
             await createModal('Note', 'In the past, insulin was extracted from the pancreas of cattle or pigs to treat patients with diabetes mellitus.');
+        } else if (currentDiv == 6) {
+            await createModal('Note', 'Biotechnology aims to improve the quality of livestock or crop products as well as to develop the use of microorganisms for a specific purpose.');
+        } else if (currentDiv == 7) {
+            await createModal('Note', 'DNA profiling is a forensic technique used to identify individuals based on their DNA.');
         }
     });
 
@@ -109,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             document.getElementById('two').style.cursor = "url('images/milk_bucket.png'), auto";
             milkGoat[1] = true;
-        }        
+        }
     });
 
     document.getElementById('farmer').addEventListener('click', async () => {
@@ -161,6 +172,73 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         geneImage.src = guide[geneProcess].image;
         document.getElementById('guide-text').textContent = guide[geneProcess].text;
+    });
+
+    document.getElementById('biotechnology').addEventListener('click', async () => {
+        await createModal('Biotechnology', 'Biotechnology is a field which utilises technology or method to manipulate organisms for the production of biological products.');
+    });
+
+    document.getElementById('police').addEventListener('click', async () => {
+        if (!evidence[0] && !evidence[1]) {
+            await createModal('Officer Ken', 'Ah, you\'re here! Just in time. I need your expertise to solve this case. We\'ve got a few suspicious clues lying around, and I need you to analyze them in the lab.', 'Good morning officer');
+            await createModal('Officer Ken', 'Start with that bloodstain over there. Bring me a DNA profile of it when you\'re done.', 'On it!');
+            document.getElementById('seven').style.cursor = "url('images/bag.png'), auto";
+        } else if (evidence[0] && !evidence[1]) {
+            await createModal('Officer Ken', 'Great work! Did you know that DNA profiling was invented by Sir Alec Jeffreys in 1985 at the University of Leicester? It\'s a forensic game-changer.', 'Ooo.. Tell me more');
+            await createModal('Officer Ken', 'Using DNA from blood, semen, or even skin cells, we can identify individuals because DNA is unique to everyone—except for identical twins.', 'Interesting!');
+            await createModal('Officer Ken', 'Now, check out that torn fabric on the chair. There might be some skin cells on it. Grab a sample and let\'s see what story it tells.', 'Got it');
+            document.getElementById('seven').style.cursor = "url('images/bag.png'), auto";
+        } else if (evidence[1]) {
+            await createModal('Officer Ken', 'Good find. Thank you for helping out. Remember, human DNA differs significantly from animal DNA, so it\'s easy to identify the source.', 'Continue');
+            await createModal('Officer Ken', 'DNA profiling has so many applications beyond criminal cases—it helps with paternity disputes, identifying genetic diseases, and even determining if an organ donor matches a recipient.', 'Wow!');
+            await createModal('Officer Ken', 'With all this evidence analyzed, I think we\'re closing in on the truth. Let\'s send everything to the lab and wrap this up. Great teamwork!', 'Thank you');
+            document.getElementById('seven').style.cursor = "default";
+            evidence = [false, false];
+        }
+    });
+
+    document.getElementById('blood').addEventListener('click', () => {
+        if (!evidence[0] && document.getElementById('seven').style.cursor.includes('bag.png')) {
+            document.getElementById('seven').style.cursor = "url('images/bag_fill.png'), auto";
+            evidence[0] = true;
+        }
+    });
+
+    document.getElementById('chair').addEventListener('click', () => {
+        if (evidence[0] && !evidence[1] && document.getElementById('seven').style.cursor.includes('bag.png')) {
+            document.getElementById('seven').style.cursor = "url('images/bag_fill.png'), auto";
+            evidence[1] = true;
+        }
+    });
+
+    document.getElementById('ship').addEventListener('click', async () => {
+        if (!oilCleanup[0]) {
+            await createModal('Ship', 'Ahoy matey! It seems like some oil spills I see there in the vast sea? Oil spills are harmful to marine life and the environment. We need to clean it up quickly!', 'How?');
+            await createModal('Ship', 'Here, take some Alcanivorax borkumensis bacteria. This bacteria can decompose the oil in the ocean. Return to me after you do so.', 'Aye aye captain');
+            document.getElementById('eight').style.cursor = "url('images/bacteria.png'), auto";
+            oilCleanup[0] = true;
+        } else if (oilCleanup[0] && oilsRemaining === 0) {
+            await createModal('Ship', 'Well done! The bacteria have cleaned up all the oil. This is a great example of bioremediation - using living organisms to clean up pollution!', 'Amazing!');
+        } else if (oilCleanup[1]) {
+            await createModal('Did you know?', 'Most of the molecules in petroleum crude oil and purified petroleum products can be decomposed biologically using bacteria.', 'Ooo');
+        }
+    });
+
+    const oilGif = new Image();
+    oilGif.src = 'images/oil_oneloop.gif';
+
+    document.querySelectorAll('.oil').forEach((oil, index) => {
+        oil.addEventListener('click', () => {
+            if (oilCleanup[0] && !oil.src.includes('oil_oneloop.gif') && !oil.src.includes('emptyoil.png')) {
+                oil.src = `images/oil_oneloop.gif?id=${index}`;
+                oilsRemaining--;
+                oil.style.pointerEvents = 'none';
+            }
+            if (oilsRemaining === 0) {
+                oilCleanup[1] = true;
+                document.getElementById('eight').style.cursor = "default";
+            }
+        });
     });
 });
 

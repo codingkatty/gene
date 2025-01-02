@@ -275,3 +275,68 @@ button {
     display: none;
     cursor: url('images/laser.png'), auto;
 }
+
+#six {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#biotechnology {
+    width: 400px;
+}
+
+#seven {
+    background-color: #acacac;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-top: 10%;
+}
+
+#police {
+    transform: scaleX(-1);
+    width: 200px;
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+}
+
+#chair {
+    width: 200px;
+}
+
+#eight {
+    position: relative;
+    background-color: #32b0e1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    padding-top: 5%;
+    transition: padding-top 0.3s ease;
+    cursor: default;
+}
+
+.oil {
+    position: absolute;
+    width: 150px;
+    z-index: 1;
+}
+
+.oil:nth-child(1) { bottom: 15%; left: 75%; }
+.oil:nth-child(2) { bottom: 25%; left: 15%; }
+
+#ship {
+    width: 400px;
+    position: relative;
+    z-index: 2;
+    animation: moveLeftRight 6s ease-in-out infinite;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 300px;
+}
