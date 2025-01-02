@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     createModal('Welcome!', 'Click items to interact');
 
-    let divList = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
+    let divList = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
     let currentDiv = 1;
     let milkGoat = [false, false];
     let plantWheat = [false, false, false, false];
@@ -49,6 +49,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    const contributions = {
+        agriculture: {
+            title: 'Contributions',
+            content: `• Produce the best livestock and crop breeds<br><br>
+    • The tissue culture method and cloning technique have expedited plant reproduction<br><br>
+    • Produce paddy varieties which give more yield and mature faster<br><br>
+    • Animal cloning enables mass reproduction and produces disease-resistant clones<br><br>
+    • Use of hormones expedite animal growth and maturity`
+        },
+        medicine: {
+            title: 'Contributions',
+            content: `• Can modify the genetic contents of an individual<br><br>
+    • Reduce risk of mental disease<br><br>
+    • Prevent specific diseases such as cancer and inherited diseases<br><br>
+    • Human with dwarf genetics can have normal children<br><br>
+    • Assist mothers with difficulty to conceive`
+        },
+        forensic: {
+            title: 'Contributions',
+            content: `• Can identify criminal based on tissue or body fluid such as blood, semen, skin or hair follicle`
+        },
+        environment: {
+            title: 'Contributions',
+            content: `• Microbes can expedite decay of waste products created by humans<br><br>
+    • Microbes can also degrade faeces completely<br><br>
+    • Reduce pollution to protect humans and the environment`
+        }
+    };
+
     for (let i = 2; i <= divList.length; i++) {
         document.getElementById(`${divList[i - 1]}`).style.display = 'none';
     }
@@ -84,6 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
             await createModal('Note', 'Biotechnology aims to improve the quality of livestock or crop products as well as to develop the use of microorganisms for a specific purpose.');
         } else if (currentDiv == 7) {
             await createModal('Note', 'DNA profiling is a forensic technique used to identify individuals based on their DNA.');
+        } else if (currentDiv == 8) {
+            await createModal('Note', 'Bioremediation is the use of living organisms to clean up pollution. Alcanivorax borkumensis is a type of bacteria that depends on oil for its source of energy is widely used to treat oil spills.');
+        } else if (currentDiv == 9) {
+            await createModal('Note', 'Biotechnology is quite important in life.')
+        } else if (currentDiv == 10) {
+            await createModal('Note', 'Biotechnology has many contributions in various fields, such as agriculture, medicine, forensic and environment.')
         }
     });
 
@@ -240,6 +275,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    document.querySelectorAll('.contributions').forEach(element => {
+        element.addEventListener('click', async () => {
+            const id = element.id;
+            if (contributions[id]) {
+                await createModal(contributions[id].title, contributions[id].content);
+            }
+        });
+    });
 });
 
 function createModal(title, content, btn) {
@@ -254,7 +298,7 @@ function createModal(title, content, btn) {
         modalTitle.textContent = title;
 
         const modalBody = document.createElement('p');
-        modalBody.textContent = content;
+        modalBody.innerHTML = content;
 
         const closeButton = document.createElement('button');
         closeButton.textContent = btn || 'Okay';

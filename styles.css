@@ -75,7 +75,6 @@ button {
     border: 6px solid #281412;
     max-width: 500px;
     width: 90%;
-    text-align: center;
     animation: modalPop 0.3s ease-out;
 }
 
@@ -196,7 +195,7 @@ button {
     align-items: center;
 }
 
-#four .main-title {
+.main-title {
     font-size: 3rem;
     margin-bottom: 40px;
     color: #281412;
@@ -339,4 +338,33 @@ button {
     display: block;
     margin: 0 auto;
     margin-bottom: 300px;
+}
+
+#nine {
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#nine .info {
+    width: 100%;
+}
+
+#ten {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 40px;
+    place-items: center;
+    min-height: 100vh;
+    background-color: #f3e0cc;
+    margin: 0 auto;
+}
+
+#ten img {
+    width: 300px;
+    cursor: pointer;
+    padding: 20px;
 }
